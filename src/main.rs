@@ -90,16 +90,6 @@ mod two {
 
             println!("{:?}", v);
 
-            // if v.len() == 1 {
-            //     result += String::from(v.first().unwrap()).parse::<u32>().unwrap();
-            //     println!(
-            //         "{:?}",
-            //         String::from(v.first().unwrap()).parse::<u32>().unwrap()
-            //     );
-            //
-            //
-            //     continue;
-            // }
             println!(
                 "{:?}",
                 String::from(
@@ -152,13 +142,5 @@ mod one {
         }
 
         println!("{:?}", result);
-    }
-}
-
-#[cfg(test)]
-mod tests {
-    #[test]
-    fn test() {
-
     }
 }
