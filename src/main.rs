@@ -42,8 +42,6 @@ mod two {
         for (i, ch) in puzzle.chars().enumerate() {
             if skip_left > 0 {
                 skip_left -= 1;
-
-                continue;
             }
 
             for (j, subj) in subjects.into_iter().enumerate() {
@@ -57,7 +55,7 @@ mod two {
                 if slice.eq(subj) {
                     // Don't like this going back and forth with types but it works.
                     result.push(j.to_string().chars().nth(0).unwrap());
-                    skip_left = subj.len() - 1;
+                    skip_left += subj.len() - 1;
 
                     break;
                 }
@@ -154,5 +152,13 @@ mod one {
         }
 
         println!("{:?}", result);
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn test() {
+
     }
 }
