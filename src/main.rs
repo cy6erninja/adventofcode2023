@@ -10,6 +10,7 @@ fn main() {
 }
 
 fn day2_cube_conundrum_part1() {
+    #[derive(Debug, Clone)]
     struct CubeSubset {
         red: u32,
         green: u32,
@@ -17,6 +18,19 @@ fn day2_cube_conundrum_part1() {
     }
 
     type Bag = CubeSubset;
+
+    impl CubeSubset {
+        fn new() -> Self {
+            Self {
+                red: 0,
+                green: 0,
+                blue: 0
+            }
+        }
+        fn power(&self) -> u32 {
+            return &self.red * &self.green * &self.blue;
+        }
+    }
 
     struct Game {
         id: u32,
@@ -33,18 +47,46 @@ fn day2_cube_conundrum_part1() {
 
             true
         }
+
+        fn min_cubeset(&self) -> CubeSubset {
+            let mut result = self.subsets[0].clone();
+
+            for subset in &self.subsets {
+                if result.red < subset.red {
+                    result.red = subset.red;
+                }
+
+                if result.green < subset.green {
+                    result.green = subset.green;
+                }
+
+                if result.blue < subset.blue {
+                    result.blue = subset.blue;
+                }
+            }
+
+            println!("{:?}", result);
+
+            result
+        }
     }
 
     struct Games {
         items: VecDeque<Game>
     }
 
-    impl Games {
-        fn new() -> Self {
+    impl Games { fn new() -> Self {
             Games {
                 items: VecDeque::new()
             }
         }
+
+        // fn sum_min_cubeset_powers(&self) -> u32 {
+        //     let result: u32 = &self.items.into_iter()
+        //         .fold(0, |acc, game| acc + game.min_cubeset().power() );
+        //
+        //     result
+        // }
     }
 
     impl Iterator for Games {
@@ -128,11 +170,14 @@ fn day2_cube_conundrum_part1() {
         blue: 14,
     };
     // println!("{:?}", games);
-    let possible_games = games.filter(|game| game.is_possible(&bag));
+    // let possible_games = &games.filter(|game| game.is_possible(&bag));
 
-    let id_sum: u32 = possible_games.fold(0, |acc, game| acc + game.id);
+    // let id_sum: u32 = possible_games.fold(0, |acc, game| acc + game.id);
+
+    let result: u32 = games
+        .fold(0, |acc , game| acc + game.min_cubeset().power());
     // Print final sum of relevant game ids.
-    println!("{}", id_sum);
+    println!("{}", result);
 }
 
 fn day1_trebuchet_part2() {
