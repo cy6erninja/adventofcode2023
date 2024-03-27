@@ -1,11 +1,12 @@
 mod day1;
 mod day2;
+mod day3;
 
 use std::fs::read;
 use std::path::Path;
 
 fn main() {
-    day2::conundrum_part2()
+    day3::gear_ratios_task1();
 }
 
 fn read_file(filepath: &str) -> String {
