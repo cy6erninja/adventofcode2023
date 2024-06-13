@@ -6,7 +6,7 @@ use std::fs::read;
 use std::path::Path;
 
 fn main() {
-    day3::gear_ratios_task1();
+    day3::gear_ratios_task2();
 }
 
 fn read_file(filepath: &str) -> String {
