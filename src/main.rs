@@ -1,12 +1,13 @@
 mod day1;
 mod day2;
 mod day3;
+mod day4;
 
 use std::fs::read;
 use std::path::Path;
 
 fn main() {
-    day3::gear_ratios_task2();
+    day4::count_scratchcard_points();
 }
 
 fn read_file(filepath: &str) -> String {
