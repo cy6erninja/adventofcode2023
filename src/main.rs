@@ -7,7 +7,7 @@ use std::fs::read;
 use std::path::Path;
 
 fn main() {
-    day4::count_scratchcard_points();
+    day4::count_scratchcards();
 }
 
 fn read_file(filepath: &str) -> String {
