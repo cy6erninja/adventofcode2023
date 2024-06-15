@@ -67,3 +67,18 @@ pub fn count_scratchcard_points() {
 
     println!("{:?}", scratchcards.into_iter().map(|card| card.points()).sum::<u32>());
 }
+
+
+#[cfg(test)]
+mod tests {
+    use super::ScratchCard;
+
+    #[test]
+    fn test_scratchcard_try_from() {
+        let scratchcard = ScratchCard::try_from("Card 1: 1 2 3 4 5 | 6 7 8 9 10".to_string()).unwrap();
+        assert_eq!(scratchcard.number, 1);
+        assert_eq!(scratchcard.playing_numbers, vec![1, 2, 3, 4, 5]);
+        assert_eq!(scratchcard.winning_numbers, vec![6, 7, 8, 9, 10]);
+    }
+}
+
