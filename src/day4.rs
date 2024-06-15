@@ -3,7 +3,7 @@ use regex::Regex;
 
 #[derive(Debug)]
 struct ScratchCard {
-    _number: u32,
+    number: u32,
     winning_numbers: Vec<u32>,
     playing_numbers: Vec<u32>,
 }
