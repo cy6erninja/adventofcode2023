@@ -203,6 +203,18 @@ pub fn part1() {
 }
 
 pub fn part2() {
+    // TODO: Reimplement part 2 with a different approach to make it faster.
+    //
+    // Part 2 requires us to treat seeds differently. Every second seed is a range size, while every first seed is the start of the range.
+    // The simple solution implemented here, adds all the numbers from all the ranges to a single Vec and then goes over them as in part 1.
+    // This is not efficient and it takes long time(probably hours) to calculate the result.
+    // I think I came up with a different approach in my mind. The approach sounds as follows:
+    // - We have seed ranges on the first line.
+    // - Every map that follows(e.g. seed-to-soil map) simply splits the range into smaller ranges along with shifting some values.
+    // - Even if some numbers in ranges are duplicated, it does not matter, because we are interested in the minimum value.
+    // - After going through all the maps, we will have much more ranges, not of seeds, but of locations.
+    // - Eventually, we just need to get all the minimum values from all the ranges and find the minimum value among them.
+
     let input_puzzle = read_file("assets/puzzle5.txt");
     let mut almanac = IslandIslandAlmanac::from_str(&input_puzzle).unwrap();
 
