@@ -2,12 +2,13 @@ mod day1;
 mod day2;
 mod day3;
 mod day4;
+mod day5;
 
 use std::fs::read;
 use std::path::Path;
 
 fn main() {
-    day4::count_scratchcards();
+    day5::part1();
 }
 
 fn read_file(filepath: &str) -> String {
