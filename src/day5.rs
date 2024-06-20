@@ -44,7 +44,7 @@ impl IslandIslandAlmanac {
     fn get_seed_locations(&self) -> Vec<usize> {
         self.seeds.iter().map(|seed| {
             let mut result = *seed;
-            println!("seed: {}", result);
+            // println!("seed: {}", result);
             for map in &self.seed_to_soil {
                 result = map.convert(*seed);
             }
@@ -55,49 +55,49 @@ impl IslandIslandAlmanac {
                 None => result,
             };
 
-            println!("soil: {}", result);
+            // println!("soil: {}", result);
 
             result = match &self.soil_to_fertilizer.iter().find(|map| map.is_in_range(result)) {
                 Some(map) => map.convert(result),
                 None => result,
             };
 
-            println!("fertilizer: {}", result);
+            // println!("fertilizer: {}", result);
 
             result = match &self.fertilizer_to_water.iter().find(|map| map.is_in_range(result)) {
                 Some(map) => map.convert(result),
                 None => result,
             };
 
-            println!("water: {}", result);
+            // println!("water: {}", result);
 
             result = match &self.water_to_light.iter().find(|map| map.is_in_range(result)) {
                 Some(map) => map.convert(result),
                 None => result,
             };
            
-            println!("light: {}", result);
+            // println!("light: {}", result);
 
             result = match &self.light_to_temperature.iter().find(|map| map.is_in_range(result)) {
                 Some(map) => map.convert(result),
                 None => result,
             };
 
-            println!("temperature: {}", result);
+            // println!("temperature: {}", result);
 
             result = match &self.temperature_to_humidity.iter().find(|map| map.is_in_range(result)) {
                 Some(map) => map.convert(result),
                 None => result,
             };
 
-            println!("humidity: {}", result);
+            // println!("humidity: {}", result);
 
             result = match &self.humidity_to_location.iter().find(|map| map.is_in_range(result)) {
                 Some(map) => map.convert(result),
                 None => result,
             };
 
-            println!("localtion: {}", result);
+            // println!("localtion: {}", result);
 
             result
         }).collect::<Vec<usize>>()
@@ -197,7 +197,29 @@ impl PartialEq for Map {
 
 pub fn part1() {
     let input_puzzle = read_file("assets/puzzle5.txt");
-    let almanac = IslandIslandAlmanac::from_str(&input_puzzle).unwrap();
+    let mut almanac = IslandIslandAlmanac::from_str(&input_puzzle).unwrap();
+
+    println!("Min location is: {:?}", almanac.get_seed_locations().iter().min().unwrap());
+}
+
+pub fn part2() {
+    let input_puzzle = read_file("assets/puzzle5.txt");
+    let mut almanac = IslandIslandAlmanac::from_str(&input_puzzle).unwrap();
+
+    let mut newseeds: Vec<usize> = Vec::new();
+    for (i, seed) in almanac.seeds.iter().enumerate() {
+        if i % 2 > 0 {
+            continue;
+        }
+
+        if i+1 < almanac.seeds.len() {
+            // println!("Range: {:?}", (*seed..*seed + almanac.seeds[i+1]).collect::<Vec<usize>>());
+            // return;
+            newseeds.append((*seed..*seed + almanac.seeds[i+1]).collect::<Vec<usize>>().as_mut());
+        }
+    }
+    almanac.seeds = newseeds;
+    
     println!("Min location is: {:?}", almanac.get_seed_locations().iter().min().unwrap());
 }
 

@@ -8,7 +8,7 @@ use std::fs::read;
 use std::path::Path;
 
 fn main() {
-    day5::part1();
+    day5::part2();
 }
 
 fn read_file(filepath: &str) -> String {
