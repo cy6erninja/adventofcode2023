@@ -44,7 +44,9 @@ impl IslandIslandAlmanac {
     fn get_seed_locations(&self) -> Vec<usize> {
         self.seeds.iter().map(|seed| {
             let mut result = *seed;
-            // println!("seed: {}", result);
+
+            // TODO: Refactor this function using chain or responsibility pattern.
+           
             for map in &self.seed_to_soil {
                 result = map.convert(*seed);
             }

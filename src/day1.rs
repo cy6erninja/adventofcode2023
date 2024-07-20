@@ -1,4 +1,4 @@
-pub fn trebuchet_part1() {
+pub fn part1() {
     let str_content = crate::read_file("assets/puzzle_input.txt");
 
     let mut result:u32 = 0;
@@ -27,7 +27,7 @@ pub fn trebuchet_part1() {
     println!("{:?}", result);
 }
 
-pub fn trebuchet_part2() {
+pub fn part2() {
     let puzzle = crate::read_file("assets/puzzle_input.txt");
     let puzzle_only_ints = replace_word_numbers_with_ints(puzzle);
     // let puzzle_only_ints = puzzle;
